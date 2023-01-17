@@ -17,6 +17,14 @@ components:
           type: "string"
         lname:
           type: "string"
+  parameters:
+    lname:
+      name: "lname"
+      description: "Last name of the person to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
 paths:
   /people:
     get:
@@ -43,3 +51,14 @@ paths:
       responses:
         "201":
           description: "Successfully created person"
+  /people/{lname}:
+    get:
+      operationId: "people.read_one"
+      tags:
+        - People
+      summary: "Read one person"
+      parameters:
+        - $ref: "#/components/parameters/lname"
+      responses:
+        "200":
+          description: "Successfully read person"
