@@ -56,6 +56,13 @@ def remove_key(array, key):
 
     return copy_at
 
+def square_it(sorted_array):
+    """
+    Given a sorted array, create a new array containing squares of all
+    the numbers of the input array in the sorted order.
+    """
+    pass
+
 if __name__ == "__main__":
     # array = [ 1, 32, 64, 122, 877, 1009]
     # print(f"Given {array}")
