@@ -51,17 +51,58 @@ def remove_key(array, key):
         if array[index] != key:
             array[copy_at] = array[index]
             copy_at += 1
-        
+
         index += 1
 
     return copy_at
 
-def square_it(sorted_array):
+
+def square_sorted(sorted_array):
     """
-    Given a sorted array, create a new array containing squares of all
-    the numbers of the input array in the sorted order.
+    Given a sorted array, create a new array containing squares of all
+    the numbers of the input array in the sorted order.
     """
-    pass
+    # Trivial O(n log n) + O(n) = O(n log n)
+    # return sorted([n**2 for n in sorted_array])
+
+    left = 0
+    right = len(sorted_array) - 1
+    squares = [None] * len(sorted_array)
+    index = right 
+    # We start with the last element of the array
+    # and continue in descending order always getting the
+    # new bigger square
+
+    while left <= right:
+        p_left = sorted_array[left] ** 2
+        p_right = sorted_array[right] ** 2
+        
+        if p_left > p_right:
+            squares[index] = p_left
+            left += 1
+        else:
+            squares[index] = p_right
+            right -= 1
+        index -= 1
+    
+    return squares
+
+
+
+
+
+
+
+def same_items(array1, array2):
+    s1 = set(array1)
+    s2 = set(array2)
+
+    return (
+        len(array1) == len(array)
+        and all([n in s2 for n in array1])
+        and all([n in s1 for n in array2])
+    )
+
 
 if __name__ == "__main__":
     # array = [ 1, 32, 64, 122, 877, 1009]
@@ -86,3 +127,7 @@ if __name__ == "__main__":
     #     assert remove_key(a_, key) == expected_length
     #     print(array)
     print("Hey")
+
+    data = [([-2, -1, 0, 2, 3], [0, 1, 4, 4, 9]), ([-3, -1, 0, 1, 2], [0, 1, 1, 4, 9])]
+    for array, result in data:
+        assert same_items(square_sorted(array), result)
