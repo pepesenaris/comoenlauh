@@ -1,0 +1,18 @@
+# Based on https://realpython.com/flask-connexion-rest-api/
+openapi: 3.0.0
+info:
+  title: "Flask REST API"
+  description: "An API to play with Flask and Connexion"
+  version: "1.0.0"
+servers:
+  - url: "/api"
+paths:
+  /people:
+    get:
+      operationId: "people.read_all"
+      tags:
+        - "People"
+      summary: "Read the list of people"
+      responses:
+        "200":
+          description: "Successfully read people list"
