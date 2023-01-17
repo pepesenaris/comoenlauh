@@ -40,8 +40,21 @@ def remove_duplicates(sorted_array):
 
 
 def remove_key(array, key):
-    pass
+    """
+    Given an unsorted array of numbers and a target ‘key’, remove all
+    instances of ‘key’ in-place and return the new length of the array
+    """
+    index = 0
+    copy_at = 0
 
+    while index < len(array):
+        if array[index] != key:
+            array[copy_at] = array[index]
+            copy_at += 1
+        
+        index += 1
+
+    return copy_at
 
 if __name__ == "__main__":
     # array = [ 1, 32, 64, 122, 877, 1009]
@@ -49,10 +62,20 @@ if __name__ == "__main__":
     # for target in [154, 20]:
     #     print(f"Find 2 numbers that sum {target}: {find_pair_that_sum(array, target)}")
 
-    print("Remove dups")
-    data = (([2, 3, 3, 3, 6, 9, 9], 4), ([2, 2, 2, 11], 2))
+    # print("Remove dups")
+    # data = (([2, 3, 3, 3, 6, 9, 9], 4), ([2, 2, 2, 11], 2))
 
-    for array, expected_length in data:
-        print(array)
-        assert remove_duplicates(array) == expected_length
-        print(array)
+    # for array, expected_length in data:
+    #     print(array)
+    #     assert remove_duplicates(array) == expected_length
+    #     print(array)
+
+    # print("Remove key")
+    # data = (([3, 2, 3, 6, 3, 10, 9, 3], 3, 4), ( [2, 11, 2, 2, 1], 2, 2))
+
+    # for array, key, expected_length in data:
+    #     a_ = array.copy()
+    #     print(array)
+    #     assert remove_key(a_, key) == expected_length
+    #     print(array)
+    print("Hey")
