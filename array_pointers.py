@@ -68,7 +68,7 @@ def square_sorted(sorted_array):
     left = 0
     right = len(sorted_array) - 1
     squares = [None] * len(sorted_array)
-    index = right 
+    index = right
     # We start with the last element of the array
     # and continue in descending order always getting the
     # new bigger square
@@ -76,7 +76,7 @@ def square_sorted(sorted_array):
     while left <= right:
         p_left = sorted_array[left] ** 2
         p_right = sorted_array[right] ** 2
-        
+
         if p_left > p_right:
             squares[index] = p_left
             left += 1
@@ -84,13 +84,8 @@ def square_sorted(sorted_array):
             squares[index] = p_right
             right -= 1
         index -= 1
-    
+
     return squares
-
-
-
-
-
 
 
 def same_items(array1, array2):
