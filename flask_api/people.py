@@ -70,3 +70,7 @@ def delete(lname):
         return make_response(f"{lname} successfully deleted", 200)
     else:
         abort(404, f"Person with last name {lname} not found")
+
+
+def test():
+    return make_response("test ok", 200)

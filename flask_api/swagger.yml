@@ -26,6 +26,12 @@ components:
       schema:
         type: "string"
 paths:
+  /people_test:
+    get:
+      operationId: "people.test"
+      responses:
+        "200":
+          description: "A test"
   /people:
     get:
       operationId: "people.read_all"
