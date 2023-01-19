@@ -15,7 +15,6 @@ def _get_by_lastname(lname):
 
 def create(person):
     lname = person.get("lname")
-
     existing_person = _get_by_lastname(lname)
 
     if existing_person is None:
