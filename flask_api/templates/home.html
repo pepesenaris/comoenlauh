@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Flask REST API</title>
+    <style>
+        .body {
+            background-color: #121212;
+            color: #FFFFFF;
+            color: rgba(255, 255, 255, 0.85);
+        }
+    </style>
 </head>
-<body>
+<body class="body">
     <h1>
         Hello, my Peopleeee!
     </h1>
 
-    <ul>
+    <section>
         {% for person in people %}
-        <li>{{ person.fname }} {{ person.lname }}</li>
+        <h2>{{ person.fname }} {{ person.lname }}</h2>
+        <ul>
+            {% for note in person.notes %}
+            <li>
+                {{ note.content }}
+            </li>
+            {% endfor %}
+        </ul>
         {% endfor %}
-    </ul>
+    </section>
 </body>
 </html>
