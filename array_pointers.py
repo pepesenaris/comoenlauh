@@ -100,7 +100,26 @@ def same_items(array1, array2):
 
 
 def triple_sum_to_zero(numbers):
+    """
+    Given an array of unsorted numbers, find all unique
+    triplets in it that add up to zero.
+    """
     pass
+    # Brute force:
+    # iterate over all permutations of 3 index in the array
+    # check if they sum zero and store the value of each index (as tuples)
+    # in a set.
+    # if we always order the values of the index before adding them to set
+    # it will discard any duplications
+    result = set()
+    size = len(numbers)
+    for i in range(size):
+        for j in range(i + 1, size):
+            for k in range(j + 1, size):
+                if numbers[i] + numbers[j] + numbers[k] == 0:
+                    result.add(tuple(sorted([numbers[i], numbers[j], numbers[k]])))
+
+    return list(result)
 
 
 if __name__ == "__main__":
@@ -127,6 +146,10 @@ if __name__ == "__main__":
     #     print(array)
     print("Hey")
 
-    data = [([-2, -1, 0, 2, 3], [0, 1, 4, 4, 9]), ([-3, -1, 0, 1, 2], [0, 1, 1, 4, 9])]
-    for array, result in data:
-        assert same_items(square_sorted(array), result)
+    # data = [([-2, -1, 0, 2, 3], [0, 1, 4, 4, 9]), ([-3, -1, 0, 1, 2], [0, 1, 1, 4, 9])]
+    # for array, result in data:
+    #     assert same_items(square_sorted(array), result)
+
+    data = [[-3, 0, 1, 2, -1, 1, -2], [-5, 2, -1, -2, 3]]
+    for array in data:
+        print(triple_sum_to_zero(array))
