@@ -155,6 +155,16 @@ def _search_pairs(nums, left, target_sum):
     return triplets
 
 
+def triple_sum_close_to_target(nums, target):
+    """
+    Given an array of unsorted numbers and a target number, find a
+    triplet in the array whose sum is as close to the target
+    number as possible, return the sum of the triplet.
+    If there are more than one such triplet, return the
+    sum of the triplet with the smallest sum.
+    """
+
+
 if __name__ == "__main__":
     # array = [ 1, 32, 64, 122, 877, 1009]
     # print(f"Given {array}")
@@ -183,6 +193,15 @@ if __name__ == "__main__":
     # for array, result in data:
     #     assert same_items(square_sorted(array), result)
 
-    data = [[-3, 0, 1, 2, -1, 1, -2], [-5, 2, -1, -2, 3]]
-    for array in data:
-        print(triple_sum_to_zero(array))
+    # data = [[-3, 0, 1, 2, -1, 1, -2], [-5, 2, -1, -2, 3]]
+    # for array in data:
+    #     print(triple_sum_to_zero(array))
+
+    data = [
+        ([-2, 0, 1, 2], 2, 1),
+        ([-3, -1, 1, 2], 1, 0),
+        ([1, 0, 1, 1], 100, 3),
+        ([0, 0, 1, 1, 2, 6], 5, 4),
+    ]
+    for array, target, result in data:
+        assert triple_sum_close_to_target(array, target) == result
