@@ -99,6 +99,10 @@ def same_items(array1, array2):
     )
 
 
+def triple_sum_to_zero(numbers):
+    pass
+
+
 if __name__ == "__main__":
     # array = [ 1, 32, 64, 122, 877, 1009]
     # print(f"Given {array}")
