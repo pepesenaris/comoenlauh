@@ -104,22 +104,55 @@ def triple_sum_to_zero(numbers):
     Given an array of unsorted numbers, find all unique
     triplets in it that add up to zero.
     """
-    pass
     # Brute force:
     # iterate over all permutations of 3 index in the array
     # check if they sum zero and store the value of each index (as tuples)
     # in a set.
     # if we always order the values of the index before adding them to set
     # it will discard any duplications
-    result = set()
-    size = len(numbers)
-    for i in range(size):
-        for j in range(i + 1, size):
-            for k in range(j + 1, size):
-                if numbers[i] + numbers[j] + numbers[k] == 0:
-                    result.add(tuple(sorted([numbers[i], numbers[j], numbers[k]])))
+    #
+    # result = set()
+    # size = len(numbers)
+    # for i in range(size):
+    #     for j in range(i + 1, size):
+    #         for k in range(j + 1, size):
+    #             if numbers[i] + numbers[j] + numbers[k] == 0:
+    #                 result.add(tuple(sorted([numbers[i], numbers[j], numbers[k]])))
 
-    return list(result)
+    # return list(result)
+
+    # for any 2 index, do we have a 3rd index whose
+    # value equals the inverse of their sum?
+    sorted_numbers = sorted(numbers)
+    results = []
+
+    for i in range(len(numbers)):
+        if i > 0 and sorted_numbers[i] == sorted_numbers[i - 1]:
+            continue
+        results += _search_pairs(sorted_numbers, i, -sorted_numbers[i])
+    return results
+
+
+def _search_pairs(nums, left, target_sum):
+    triplets = []
+    right = len(nums) - 1
+
+    while left < right:
+        current = nums[left] + nums[right]
+        if current == target_sum:
+            triplets.append([-target_sum, nums[left], nums[right]])
+            left += 1
+            right -= 1
+
+            while left < right and nums[left] == nums[left - 1]:
+                left += 1
+            while left < right and nums[right + 1] == nums[right]:
+                right -= 1
+        elif current < target_sum:
+            left += 1
+        else:
+            right -= 1
+    return triplets
 
 
 if __name__ == "__main__":
