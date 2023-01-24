@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 
 
 def find_pair_that_sum(sorted_array, target):
@@ -155,7 +156,7 @@ def _search_pairs(nums, left, target_sum):
     return triplets
 
 
-def triple_sum_close_to_target(nums, target):
+def triple_sum_close_to_target(numbers, target):
     """
     Given an array of unsorted numbers and a target number, find a
     triplet in the array whose sum is as close to the target
@@ -163,6 +164,35 @@ def triple_sum_close_to_target(nums, target):
     If there are more than one such triplet, return the
     sum of the triplet with the smallest sum.
     """
+    sorted_nums = sorted(numbers)
+    best_diff = math.inf
+    for left_index, n in enumerate(sorted_nums):
+        if left_index >= len(sorted_nums) - 2:
+            # We can not build a triple with the last 2 elements of the array
+            continue
+
+        left = left_index + 1
+        right = len(sorted_nums) - 1
+        while left < right:
+            current_sum = sum(
+                (sorted_nums[left_index], sorted_nums[left], sorted_nums[right])
+            )
+            current_diff = target - current_sum
+
+            if current_diff == 0:
+                return target
+
+            if abs(current_diff) < abs(best_diff) or (
+                abs(current_diff) == abs(best_diff) and current_sum < target - best_diff
+            ):
+                best_diff = current_diff
+
+            if current_diff > 0:
+                left += 1
+            else:
+                right -= 1
+
+    return target - best_diff
 
 
 if __name__ == "__main__":
